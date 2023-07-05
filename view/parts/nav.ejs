@@ -1,0 +1,24 @@
+<%_ if (count > 1) { _%>
+<nav aria-label="<%= label %>" class="w-100">
+    <ul class="pagination justify-content-center pagination-lg">
+        <li class="page-item <%= hasPrev ? '' : 'disabled' _%>">
+            <a class="page-link" href="<%= hasPrev ? phref(true) : '' _%>">
+                <i class="fa fa-chevron-left <%= hasPrev ? 'text-primary' : 'text-gray' _%>"></i>
+            </a>
+        </li>
+        <%_
+        for (let p of pages) { _%>
+        <li class="page-item <%= (p.number === current) ? 'active' : '' -%>">
+            <a class="page-link" href="<%= p.url _%>">
+                <%= p.number _%>
+            </a>
+        </li>
+        <%_ } _%>
+        <li class="page-item <%= hasNext ? '' : 'disabled' _%>">
+            <a class="page-link" href="<%= hasNext ? phref(false) : '' _%>">
+                <i class="fa fa-chevron-right <%= hasNext ? 'text-primary' : 'text-gray' _%>"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+<%_ } _%>

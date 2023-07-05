@@ -1,0 +1,64 @@
+<%_ if (person.show) { _%>
+<div class="col-lg-4 col-md-6 wow slideInLeft" data-wow-delay="0.1s">
+    <div class="team-item">
+        <div class="d-flex">
+            <div class="team-item-name position-relative overflow-hidden bg-light d-flex flex-column text-center w-100">
+                <div class="row g-0 p-0 m-0 w-100">
+                    <div class="text-primary d-flex justify-content-center flex-column person-ask"><%= person.ask != '' ? person.ask : ' ' %></div>
+                    <h5><%= person.lastname %></h5>
+                    <p class="h6"><%= person.name %> <%= person.patronymic %></p>
+                    <span class="text-primary pb-1"><%= person.job %></span>
+                </div>
+                <div class="row g-0 p-0 m-0 w-100 team-social-arrow-row">
+                    <%_ if (person.hasData) { _%>
+                    <div class="col-1 team-social-arrow flex-shrink-0 btn-square bg-light position-relative d-flex">
+                        <div class="team-social-arrow-wrap btn-square bg-primary">
+                        <i class="fa fa-2x fa-arrow-right text-white bg-primary"></i>
+                        </div>
+                    </div>
+                    <div class="team-social col-11">
+                    <%_ if (person.a1 != null) { _%>
+                        <a class="btn btn-square btn-light rounded-circle mx-1" href="tel:<%= person.a1 %>">
+                            <img class="img-fluid" src="/img/mobile/a1.svg" alt="a1"/>
+                        </a>
+                    <%_ } _%>
+                    <%_ if (person.mts != null) { _%>
+                        <a class="btn btn-square btn-light rounded-circle mx-1" href="tel:<%= person.mts %>">
+                            <img class="img-fluid" src="/img/mobile/mts.svg" alt="mts"/>
+                        </a>
+                    <%_ } _%>
+                    <%_ if (person.telegram != null) { _%>
+                        <a class="btn btn-square rounded-circle mx-1"
+                           style="background-color: #39a9e0"
+                            href="https://t.me/<%= (person.telegram == 'a1') ? person.a1 : person.mts %>">
+                            <img class="img-fluid" src="/img/mobile/telegram.svg" alt="telegram"/>
+                        </a>
+                    <%_ } _%>
+                    <%_ if (person.whatsapp != null) { _%>
+                        <a class="btn btn-square btn-light rounded-circle mx-1"
+                            href="https://wa.me/<%= (person.whatsapp == 'a1') ? person.a1 : person.mts %>">
+                            <img class="img-fluid" src="/img/mobile/whatsapp.svg" alt="whatsapp"/>
+                        </a>
+                    <%_ } _%>
+                    <%_ if (person.viber != null) { _%>
+                        <a class="btn btn-square rounded-circle mx-1"
+                           style="background-color:#7c53a6; color:white;"
+                            href="viber://chat/?number=<%= (person.viber == 'a1') ? person.a1 : person.mts %>">
+                            <img class="img-fluid" src="/img/mobile/viber.svg" alt="viber"/>
+                        </a>
+                    <%_ } _%>
+                    <%_ if (person.email != null) { _%>
+                        <a class="btn btn-square btn-light rounded-circle mx-1" href="mailto:<%= person.email %>">
+                            <i class="fa-regular fa-envelope fa-lg"></i>
+                        </a>
+                    <%_ } _%>
+                    <%_ } else { _%>
+                    <div class="col-12">
+                    <%_ } _%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%_ } _%>

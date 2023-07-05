@@ -1,0 +1,71 @@
+<%_
+    var keywords
+    var description
+    var title
+    var image
+    var ogurl
+
+    keywords = (
+                   (Array.isArray(keywords))
+                        ? keywords.filter( (i) => { return i !==null && i !== '' } ).join(', ') + ', '
+                        : ''
+               ) + opts.og.keywords.join(', ')
+    description = ((typeof description != 'undefined') ? description          : opts.og.description_default) + opts.og.description_suffix
+    title       = ((typeof title       != 'undefined') ? ('Прайд — ' + title) : opts.og.title_default      )
+    image       = ((typeof image       != 'undefined') ? image                : opts.og.image_default      )
+    ogurl       = ((typeof ogurl       != 'undefined') ? ogurl                : url                        )
+    console.log(ogurl)
+_%>
+<%- await include('./metrics') -%>
+
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type"     content="text/html;charset=UTF-8">
+<meta http-equiv="content-language" content="ru">
+<meta name="viewport"    content="width=device-width, initial-scale=1.0"/>
+
+<meta name="description" content="<%= description -%>"/>
+<meta name="keywords"    content="<%= keywords -%>"/>
+<meta name="author"      content="<%= opts.pride %>"/>
+
+<meta property="og:type"         content="website" />
+<meta property="og:site_name"    content="<%= opts.og.title_default -%>" /> <!-- TODO -->
+<meta property="og:locale"       content="ru_RU" />
+<meta property="og:title"        content="<%= title -%>" />
+<meta property="og:description"  content="<%= description -%>" />
+<meta property="og:url"          content="<%= opts.base_url + ogurl.replace(/\?.*$/, '')   -%>" />
+<meta property="og:image"        content="<%= opts.base_url + image -%>" />
+<meta property="og:image:width"  content="<%= opts.og.image_size -%>" />
+<meta property="og:image:height" content="<%= opts.og.image_size -%>" />
+<meta property="og:image:type"   content="image/jpeg" />
+
+<link rel="apple-touch-icon" href="/img/logo/apple-touch-icon.png" type="image/png" />
+<link rel="icon"             href="/img/logo/favicon.png"          type="image/png" />
+<link rel="icon"             href="/img/logo/favicon.svg"          type="image/svg+xml" />
+
+<link rel="stylesheet" href="/lib/logofont.css" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" >
+<%_
+if (process.env.USE_CDN) {
+_%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<%_
+} else {
+_%>
+<link rel="stylesheet" href="/lib/animate.min.css">
+<link rel="stylesheet" href="/lib/owl.carousel.min.css">
+<link rel="stylesheet" href="/lib/magnific-popup.css">
+<%_
+}
+_%>
+<%# Customized Bootstrap Stylesheet -%>
+<link rel="stylesheet" href="/lib/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css"  >
+<link rel="stylesheet" href="/css/liaonau.css">
+<%# to prevent Firefox FOUC, this must be here -%>
+<script>let FF_FOUC_FIX;</script>
+
+<title>
+    <%= title -%>
+</title>

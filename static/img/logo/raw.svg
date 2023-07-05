@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg
+    version="1.0"
+    xmlns="http://www.w3.org/2000/svg"
+    xml:space="preserve"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="1350"
+    height="1350"
+    viewBox="0 0 1350 1350"
+>
+    <path
+        d="M 0 0 v 1000 h 300 v -700 h 400 v 700 h 300 v -1000 h -1000"
+        fill="#ff0000"
+    />
+    <path
+        d="M 0 0 v 1000 h 300 v -700 h 400 v 700 h 300 v -1000 h -1000"
+        fill="#000000"
+        transform="rotate(180 1000 1000) translate(650 650)"
+    />
+</svg>

@@ -1,0 +1,51 @@
+<%_
+    const prod = data.prod
+    const desc = data.prod.Descriptions
+_%>
+<%_ let hrwidth = 50 _%>
+<div class="d-flex justify-content-center">
+    <hr class="w-<%= hrwidth -%>">
+</div>
+<div class="row g-0 px-3 mx-0 align-items-center">
+    <div class="col-lg-1 d-flex justify-content-center my-2">
+        <%_ if (data.fullview) { _%>
+        <div class="popup-gallery-single">
+            <a href="<%= data.fullview %>">
+                <img class="img-fluid img-thumbnail product-caption-image"
+                    src="<%= data.preview %>"
+                    alt="<%= prod.shortname -%>"
+                    title="<%= prod.shortname -%>"
+                >
+            </a>
+        </div>
+        <%_ } _%>
+    </div>
+    <div class="col-lg-10">
+        <div class="d-flex align-items-center flex-column">
+            <h1 class="h3 mb-0 w-75 text-center text-dark"><%= prod.fullname.replace(/-/, '‑') %></h1>
+            <%_
+                var tu = null
+                var zeroPad = (num) => String(num).padStart(3, '0')
+                if (prod.tuId)
+                    var tu = await data.model.Tu.findOne({where: {id :prod.tuId}})
+             _%>
+            <%_ if (tu) { _%>
+            <div class="text-center text-dark mt-2">
+                <span>ТУ РБ <%= opts.tucode %>.<%= zeroPad(tu.number) %>‑<%= tu.year %></span>
+            </div>
+            <%_ } _%>
+        </div>
+    </div>
+    <div class="col-lg-1 d-md-none">
+    </div>
+</div>
+<%_ if (prod.summary) { _%>
+<div class="row g-0 px-3 mt-3 mx-0 align-items-center">
+    <div class="align-self-center d-flex justify-content-center text-break stretch mt-0 px-2">
+        <div><%- prod.summary %></div>
+    </div>
+</div>
+<%_ } _%>
+<div class="d-flex justify-content-center">
+    <hr class="w-<%= hrwidth -%>">
+</div>

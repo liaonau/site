@@ -1,0 +1,19 @@
+<div class="d-flex flex-column justify-content-center">
+    <div><%= video.title -%></div>
+    <div class="position-relative d-flex justify-content-center video-item">
+        <button
+                type="button"
+                class="btn btn-youtube"
+                data-bs-toggle="modal"
+                data-src="https://www.youtube.com/embed/<%- video.src -%>"
+                data-bs-target="#videoModal"
+        >
+            <img
+                class="img-fluid img-thumbnail"
+                src="img/video/<%= video.thumb -%>"
+                alt="<%= video.title -%>"
+                title="<%= video.title -%>"
+            />
+        </button>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <%- await include('./parts/head',
+    {
+        data:  data,
+        title: '404',
+    }) -%>
+</head>
+
+<body>
+
+<%- await include('./parts/header', {data: data}) -%>
+
+<main>
+    <div class="container-fluid text-center py-5 wow fadeInUp mb-3" data-wow-delay="0.1s">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <i class="fa fa-7x fa-exclamation-triangle text-primary"></i>
+                <h1 class="display-1">404</h1>
+                <h2 class="h2 mb-4">Такой страницы не существует</h2>
+                <p class="mb-4">
+                    Нам жаль ☹. Может быть, вернитесь на главную страницу и поищите то, что Вы хотели найти.
+                </p>
+                <a class="btn btn-primary py-3 px-5" href="/">На главную</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <%- await include('./parts/footer', {data: data}) -%>
+    <%- await include('./parts/foot',   {data: data}) -%>
+</footer>
+
+</body>
+</html>

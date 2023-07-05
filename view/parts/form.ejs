@@ -1,0 +1,49 @@
+<div class="row g-5 m-0 p-0 g-0">
+    <div class="col-lg-4 wow fadeInLeft d-flex flex-column justify-content-start" data-wow-delay="0.1s">
+        <h5 class="h4 fw-medium text-uppercase text-primary text-center mb-2">Свяжитесь с нами</h5>
+        <p class="h4 text-center mb-4">Если у Вас есть вопросы, отправьте нам сообщение</p>
+    </div>
+    <div class="col-lg-8 wow fadeInLeft mb-3" data-wow-delay="0.3s">
+        <form id="form" action="" method="post">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="name" placeholder="Ваше имя" required>
+                        <label for="name">Ваше имя</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" placeholder="Ваш Email" required>
+                        <label for="email">Ваш Email</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="subject" placeholder="Тема" required>
+                        <label for="subject">Тема</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <textarea class="form-control" id="message" placeholder="Сообщение" required style="height: 150px"></textarea>
+                        <label for="message">Сообщение</label>
+                    </div>
+                </div>
+                <div aria-live="polite" aria-atomic="true" style="position: relative;">
+                    <div style="position: absolute; top: 0rem; left: 0;">
+                        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-body text-center">
+                                <span id="toast-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex flex-row justify-content-center">
+                    <input id="submit" class="btn btn-primary py-3 px-5" type="submit" required value="Отправить"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

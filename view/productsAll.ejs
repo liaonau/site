@@ -1,0 +1,66 @@
+<%_
+    let title = ''
+    let sphere = data.sphere
+    if (sphere)
+        title = sphere.name
+    let suffix = 'продукция' + (title ? ': ' : '') + title
+_%>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <%- await include('./parts/head',
+    {
+        data:        data,
+        keywords:    ['продукция', (title ? title : null) ],
+        description: 'Полимерные композиционные материалы «Прален»' + (title ? ': ' : '') + title + '.',
+        title:       suffix,
+    }) -%>
+</head>
+
+<body>
+
+<%- await include('./parts/header', {data: data}) -%>
+
+<main>
+    <%- await include('./parts/image-header', {imageurl: sphere ? '../sphere/'+sphere.link+'.jpg' : 'product.jpg'}) -%>
+        <div class="container-fluid py-3">
+            <h1 class="display-3 text-white wow slideInRight">Продукция</h1>
+            <p class="fs-5 fw-medium carousel-text text-uppercase slideInRight wow slideInRight">
+                <%= title -%>
+            </p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb wow slideInRight mb-0">
+                    <%_
+                    for (let p of data.products )
+                    { _%>
+                    <li class="breadcrumb-item"><a href="#product_<%= p.name %>"><%= p.shortname.replace(opts.pralen + ' ', '') %></a></li>
+                    <%_ } _%>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <%_ if (sphere) { _%>
+    <div class="container-fluid py-0 px-2 d-flex flex-column justify-content-center">
+        <h2 class="h4 text-center text-primary"><%= sphere.description -%><h2>
+    </div>
+    <%_ } _%>
+    <div class="container-fluid py-5 mb-5 px-2 d-flex flex-column justify-content-center">
+        <%- await include('./parts/nav', {label: 'Продукция'}) %>
+        <div class="row g-0 mx-0 px-0">
+        <%_ for (let p of data.products) { _%>
+            <div class="col-lg-3 col-md-4 col-sm-6 px-3 mx-0 wow slideInUp p-5" data-wow-delay="0.1s">
+                <%- await include('./product/small', {prod: p}) -%>
+            </div>
+        <%_ } _%>
+        </div>
+        <%- await include('./parts/nav', {label: 'Продукция'}) %>
+    </div>
+</main>
+
+<footer>
+    <%- await include('./parts/footer', {data: data}) %>
+    <%- await include('./parts/foot',   {data: data}) %>
+</footer>
+
+</body>
+</html>

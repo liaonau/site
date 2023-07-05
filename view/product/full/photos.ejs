@@ -1,0 +1,23 @@
+<%_
+    const prod   = data.prod
+    const photos = data.photos
+_%>
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="popup-gallery d-flex justify-content-around align-items-center wow zoomIn" data-wow-delay="0.1s">
+        <div class="row text-center d-flex flex-nowrap overflow-auto">
+        <%_ for (photo of photos) { _%>
+            <div class="col-xs-4 w-auto">
+                <a class="image-item" href="<%- photo -%>">
+                    <img
+                        class="img-fluid img-thumbnail"
+                        src="<%= photo.replace(/(\/photo\/)([^\/]+)$/, '/thumb/$2') -%>"
+                        title="<%= prod.shortname -%>"
+                        alt="<%= prod.shortname -%>"
+                    />
+                </a>
+            </div>
+        <%_ } _%>
+        </div>
+    </div>
+</div>

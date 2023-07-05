@@ -1,0 +1,32 @@
+<div class="carousel-item <%= c %>">
+    <img class="w-100" src="<%= image %>" alt="<%= text -%>">
+    <div class="carousel-caption">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <p class="fs-5 fw-medium text-orange text-uppercase animated slideInRight text-center">
+                    <h1 class="h2 text-white animated slideInRight"><%= opts.pride -%></h1>
+                        <p class="h2 carousel-text animated slideInRight">
+                            <%= data.age %> <span class="year-plural"><%= data.age %></span> на рынке полимерных материалов
+                        </p>
+                    </p>
+                    <h2 class="display-3 text-white mb-5 animated slideInRight text-center">
+                        <a href="<%= href || '#' -%>" class="text-decoration-none text-warning text-center py-3 px-0 animated slideInRight">
+                            <%= text %>
+                        </a>
+                    </h2>
+                    <div class="carousel-more">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb animated slideInRight mb-0 d-flex justify-content-center">
+                                <li class="breadcrumb-item"><a href="#about">О нас</a></li>
+                                <li class="breadcrumb-item"><a href="#facts">Факты</a></li>
+                                <li class="breadcrumb-item"><a href="#features">Почему выбирают нас</a></li>
+                                <li class="breadcrumb-item"><a href="#videos">Видео о нас</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

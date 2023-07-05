@@ -1,0 +1,34 @@
+<section id="facts" class="section-facts">
+    <div class="container-fluid facts my-3 mx-0 px-2 pb-5">
+        <div class="row g-5 px-0 mx-0">
+            <div class="col-md-6 col-xl-3 wow fadeInLeft" data-wow-delay="0.1s">
+                <div class="text-center border p-3">
+                    <i class="fa fa-history fa-3x text-white mb-3" style="transform: scaleX(-1);"></i>
+                    <p class="display-2 text-primary mb-0" data-toggle="counter-up"><%= data.age %></p>
+                    <p class="fs-5 fw-semi-bold text-white"><span class="year-plural"><%= data.age%></span> опыта работы</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="text-center border p-3">
+                    <i class="fa fa-flask-vial fa-3x text-white mb-3"></i>
+                    <p class="display-2 text-primary mb-0 add-plus" data-toggle="counter-up"><%= opts.facts.grades %></p>
+                    <p class="fs-5 fw-semi-bold text-white">видов продукции</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 wow fadeInLeft" data-wow-delay="0.3s">
+                <div class="text-center border p-3">
+                    <i class="fa fa-users fa-3x text-white mb-3"></i>
+                    <p class="display-2 text-primary mb-0 add-plus" data-toggle="counter-up"><%= opts.facts.clients %></p>
+                    <p class="fs-5 fw-semi-bold text-white">довольных клиентов</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 wow fadeInLeft" data-wow-delay="0.4s">
+                <div class="text-center border p-3">
+                    <i class="fa fa-industry fa-3x text-white mb-3"></i>
+                    <p class="display-2 text-primary mb-0 add-plus" data-toggle="counter-up"><%= opts.facts.powers %></p>
+                    <p class="fs-5 fw-semi-bold text-white">тонн в год мощности</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

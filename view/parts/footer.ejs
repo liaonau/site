@@ -1,0 +1,33 @@
+<div class="container-fluid bg-dark footer wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4 col-md-4 text-center order-2">
+                <h5 class="h5 text-white"><%= opts.pride -%></h5>
+                <img class="img-fluid h-25" src="/img/logo/logo.svg" alt="<%= opts.pride -%>"/>
+                <p>полимерные композиционные материалы</p>
+                <p>дата регистрации: <time datetime="1992-09-24">24 сентября 1992</time></p>
+            </div>
+            <div class="col-lg-4 col-md-4 text-center order-1">
+                <h5 class="h5 text-white mb-4">Контакты</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><%= opts.address -%></p>
+                <p class="mb-2">
+                    <a class="text-reset text-decoration-none" href="tel:<%= opts.phone -%>">
+                        <i class="fa fa-phone-alt me-3"></i><span class="phone phone-city"><%= opts.phone -%></span>
+                    </a>
+                </p>
+                <p class="mb-2">
+                    <a class="text-reset text-decoration-none" href="mailto:<%= opts.mail %>">
+                            <i class="fa fa-envelope me-3"></i><%= opts.mail -%>
+                    </a>
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-4 text-center order-3">
+                <h5 class="h5 text-white mb-4"><%= opts.hours.text -%></h5>
+                <p class="mb-1">Понедельник - Пятница</p>
+                <p class="h6 text-light"><%= opts.hours.start -%> - <%= opts.hours.finish -%></p>
+                <p class="mb-1">Суббота - Воскресенье</p>
+                <p class="h6 text-light">Выходной</p>
+            </div>
+        </div>
+    </div>
+</div>

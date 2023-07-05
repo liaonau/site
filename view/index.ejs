@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <%- await include('./parts/head',
+    {
+        data: data,
+    }) -%>
+</head>
+
+<body>
+
+<%- await include('./parts/header', {data: data}) -%>
+
+<main>
+    <section class="section-carousel">
+        <div class="container-fluid px-0 mb-5">
+            <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <%- await include('./parts/index/carousel-item',
+                    {
+                        image: "/img/carousel/carousel-1.jpg",
+                        c:     "",
+                        text:  'Защита от коррозии',
+                        href:  '/sphere/anticorrosive',
+                    }) %>
+                    <%- await include('./parts/index/carousel-item',
+                    {
+                        image: "/img/carousel/carousel-1.jpg",
+                        c:     "",
+                        text:  'Композиты для техники',
+                        href:  '/sphere/construction',
+                    }) %>
+                    <%- await include('./parts/index/carousel-item',
+                    {
+                        image: "img/carousel/carousel-1.jpg",
+                        c:     "",
+                        text:  'Разработка новых материалов',
+                        href:  '/custom',
+                    }) %>
+                    <%- await include('./parts/index/carousel-item',
+                    {
+                        image: "/img/carousel/carousel-1.jpg",
+                        c:     "active",
+                        text:  'Нам есть чем гордиться',
+                        href:  '/sphere',
+                    }) %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Предыдущий</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Следующий</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <%- await include('./section/about',    {data: data}) -%>
+    <%- await include('./section/facts',    {data: data}) -%>
+    <%- await include('./section/features', {data: data}) -%>
+    <%- await include('./section/video',    {data: data}) -%>
+</main>
+
+<footer>
+    <%- await include('./parts/footer', {data: data}) -%>
+    <%- await include('./parts/foot',   {data: data}) -%>
+</footer>
+
+</body>
+</html>

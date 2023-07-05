@@ -1,0 +1,10 @@
+<div id="product_<%= prod.name %>" class="prod-small border rounded w-100">
+    <a class="p-1 text-center text-decoration-none d-flex flex-column text-dark" href="/product/<%= prod.name -%>">
+        <div class="prod-small-img">
+            <img class="img-fluid" src="<%= prod.preview -%>" alt="<%= prod.fullname -%>" title="<%= prod.shortname -%>"/>
+        </div>
+        <div class="prod-small-fullname h5 d-flex flex-column justify-content-center text-break text-responsive-copyright">
+            <%= prod.fullname -%>
+        </div>
+    </a>
+</div>

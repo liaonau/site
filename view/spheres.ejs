@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <%- await include('./parts/head',
+    {
+        data:        data,
+        keywords:    ['продукция'],
+        description: '',
+        title:       'продукция по сфере применения',
+    }) -%>
+</head>
+
+<body>
+
+<%- await include('./parts/header', {data: data}) -%>
+
+<main>
+    <%- await include('./parts/image-header', {imageurl: 'spheres.jpg'}) -%>
+        <div class="container-fluid py-3">
+            <h1 class="display-3 text-white wow slideInRight">Продукция</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb wow slideInRight mb-0">
+                    <%_ for (let sphere of data.spheres ) { _%>
+                    <li class="breadcrumb-item"><a href="#sphere_<%= sphere.id %>"><%= sphere.name %></a></li>
+                    <%_ } _%>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div id="spheres" class="container-fluid pb-5 mb-5">
+        <div class="text-center mx-auto pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="fw-medium text-uppercase text-primary mb-2">Наша гордость</p>
+            <p class="display-5 mb-4">Наша продукция</p>
+        </div>
+        <div class="row gy-0 gx-4">
+        <%_ for (let sphere of data.spheres ) { _%>
+        <%- await include('./parts/spheres/sphere-item',
+        {
+            img:         '/img/sphere/' + sphere.link + '.jpg',
+            id:          sphere.id,
+            name:        sphere.name,
+            description: sphere.description,
+            link:        '/sphere/' + sphere.link,
+        }) %>
+        <%_ } _%>
+        <%- await include('./parts/spheres/sphere-item',
+        {
+            img:         '/img/sphere/custom.jpg',
+            id:          '9999',
+            name:        'разработки под заказ',
+            description: 'создание с нуля продукта, который подойдет именно Вам',
+            link:        '/custom',
+        }) %>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <%- await include('./parts/footer', {data: data}) -%>
+    <%- await include('./parts/foot',   {data: data}) -%>
+</footer>
+
+</body>
+</html>

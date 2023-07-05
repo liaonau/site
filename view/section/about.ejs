@@ -1,0 +1,66 @@
+<section id="about" class="section-about">
+    <div class="container-fluid about py-5 px-2">
+        <div class="row g-5 mx-0 px-0">
+            <div class="col-lg-4 order-last order-lg-first">
+                <%#<div class="popup-gallery d-flex justify-content-around align-items-center wow zoomIn" data-wow-delay="0.1s">-%>
+                <div class="row gx-3 h-100 popup-gallery">
+                    <%_
+                    for (let image of ls_dir('/img/about/')) {
+                    _%>
+                    <div class="col-6 align-self-center wow fadeInLeft" data-wow-delay="0.1s">
+                        <%_ alttitle = 'Пример использования наших материалов' _%>
+                        <a href="<%= image %>">
+                            <img
+                                class="img-fluid img-thumbnail"
+                                src="<%= image %>"
+                                alt="<%= alttitle -%>"
+                                title="<%= alttitle -%>"
+                            />
+                        </a>
+                    </div>
+                    <%_ } _%>
+                </div>
+
+            </div>
+            <div class="col-lg-8 wow fadeInLeft" data-wow-delay="0.2s">
+                <p class="fw-medium text-uppercase text-primary mb-2 text-center"><%= opts.pride %></p>
+                <h2 class="display-6 mb-4 text-center">Лидирующий на рынке Беларуси производитель полимерных композиционных материалов</h2>
+                <p class="mb-4 stretch">
+                    <%= opts.pride %> зарегистрировано
+                    <time datetime="1992-09-24">24 сентября 1992</time> года Новополоцким горисполкомом.
+                </p>
+                <p class="mb-4 stretch">
+                    Основная сфера нашей деятельности – производство полимерных композиционных материалов на основе
+                    полипропилена, полиэтилена, сополимера этилена и винилацетата,
+                    а также производство полимерных пленок, герметизирующих термоплавких и термоусаживающихся лент.
+                </p>
+                <p class="mb-4 stretch">
+                    Мощности предприятия по выпуску полимерной продукции составляют более шести тысяч тонн в год.
+                    Предприятие располагает современной производственной базой, лабораторией,
+                    подготовленным и организованным коллективом специалистов.
+                    Производственные цеха оснащены современным оборудованием, обеспечивающим полный производственный цикл.
+                </p>
+                <p class="mb-4 stretch">
+                    Вся продукция предприятия выпускается под торговой маркой «ПРАЛЕН».
+                </p>
+                <p class="mb-4 stretch">
+                    Каждый вид продукции соответствует требованиям технических условий,
+                    проходит контроль ОТК, сертифицируется (по требованию заказчика),
+                    в том числе некоторые марки на соответствие директивам 2002/96/ЕС (RoHS), 2011/65/EU (RoHS2),
+                    техническому регламенту ТР ЕАЭС 037/2016.
+                </p>
+                <p class="mb-4 stretch">
+                    Предприятие является постоянным членом Торгово-промышленной палаты Республики Беларусь.
+                </p>
+                <div class="row g-3">
+                    <%_ for (let sphere of data.spheres) { _%>
+                    <div class="col-lg-6 align-self-center wow fadeInUp" data-wow-delay="0.1s">
+                        <i class="fa fa-check text-primary me-2"></i>
+                        <a class="text-dark text-decoration-none" href="/sphere/<%= sphere.link %>"><%= sphere.name %></a>
+                    </div>
+                    <%_ } _%>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

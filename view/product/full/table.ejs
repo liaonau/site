@@ -1,0 +1,112 @@
+<%_
+    const prod = data.prod
+_%>
+<table class="table table-striped table-sm table-bordered">
+    <thead>
+        <tr class="table-primary">
+            <th scope="col" class="product-th">№</th>
+            <th scope="col" class="product-th">Показатель</th>
+            <th scope="col" class="product-th">Единица</th>
+            <th scope="col" class="product-th">Значение</th>
+        </tr>
+    </thead>
+    <tbody>
+    <%_
+        let iter    = 0
+        let hasOpts = false
+    _%>
+    <%_ for (let claim of prod.Claims) { _%>
+        <%_
+            iter++
+            if (claim.opt)
+                hasOpts = true
+            let measure = await data.model.Measure.findOne( {where: {id: claim.measureId }})
+            let format  = function(v)
+            {
+                let val
+                let fmt = (claim.fmt) ? claim.fmt : measure.fmt
+                if (fmt == 'p')
+                    val = '<span>'+v.toExponential().replace(/e\+?/, '·10<sup>')+'</sup></span>'
+                else
+                    val = data.sprintf('%'+fmt, v)
+                return val.replace(/\./, ',')
+            }
+            let avg = measure.avg
+            if (typeof claim.avg === 'boolean')
+                avg = claim.avg
+        _%>
+        <tr class="<%= claim.opt ? 'claim-opt d-none' : '' -%>">
+            <th scope="row" class="align-middle text-center"><%= iter %></th>
+            <td class="align-middle text-break">
+                <%_
+                    let appendix = ''
+                    if (claim.demand)
+                        appendix += ', '+claim.demand
+                    if (claim.min && claim.max && !avg)
+                        appendix += ', в пределах'
+                    else if (claim.min && !claim.max)
+                        appendix += ', не менее'
+                    else if (claim.max && !claim.min)
+                        appendix += ', не более'
+                _%>
+                <span><%- measure.text %><%= appendix %></span>
+            </td>
+            <td class="align-middle text-center text-break">
+                <%- measure.unit %>
+            </td>
+            <td class="align-middle text-center <%= claim.text ? 'text-break' : '' -%>">
+                <%_
+                    let txt = ''
+                    if (claim.text)
+                        txt = claim.text
+                    else
+                    {
+                        if (avg && claim.min && claim.max)
+                        {
+                            let value = (claim.max + claim.min) / 2
+                            let delta = (claim.max - claim.min) / 2
+                            txt += format(value) + ' ± ' + format(delta)
+                        }
+                        else
+                        {
+                            if (claim.min)
+                                txt += format(claim.min)
+                            if (claim.min && claim.max)
+                            {
+                                txt += ' ‒ '
+                            }
+                            if (claim.max)
+                                txt += format(claim.max)
+                            if (claim.min && claim.max)
+                            {
+                                txt += '   '
+                            }
+                        }
+                    }
+                _%>
+                <span><%- txt -%></span>
+            </td>
+        </tr>
+    <%_ } _%>
+    </tbody>
+</table>
+<%_ if (hasOpts) {
+    let more = 'fa-angles-down'
+    let less = 'fa-angles-up'
+_%>
+<div id="opt" class="d-flex flex-row justify-content-center">
+    <button id="tableToggler" class="btn btn-info btn-sm px-1 mb-3 w-25" onclick="tableToggle()">
+        <i class="opt-img fa <%- more -%>"></i>
+    </button>
+</div>
+<script>
+    function tableToggle()
+    {
+        $('.claim-opt').toggleClass('d-none')
+        $('.opt-img')
+           .removeClass('<%- more -%>')
+           .removeClass('<%- less -%>')
+           .addClass($('.claim-opt').hasClass('d-none') ? '<%- more -%>' : '<%- less -%>')
+    }
+</script>
+<%_ } _%>

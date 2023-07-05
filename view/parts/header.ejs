@@ -1,0 +1,106 @@
+<%_ if (process.env.USE_METRICS) { _%>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K87STGR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/93134714" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<%_ } _%>
+<div id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+</div>
+
+<nav class="navbar navbar-expand-lg bg-light navbar-light border-bottom border-dark sticky-top py-0 pe-0" id="navbar" role="navigation">
+    <div class="navbar-brand ps-4 me-0 align-items-stretch">
+        <a href="/" class="ps-0 d-inline-flex align-items-center nav-link">
+            <span class="d-xs-none d-block logo-text text-dark">прайд</span>
+            <div class="logo">
+                <img id="pride-logo" class="img-fluid" src="/img/logo/logo.svg" alt="<%= opts.pride -%>"/>
+            </div>
+        </a>
+    </div>
+    <div class="h-100 d-none d-xl-inline-flex align-items-center text-white navbar-phone bg-primary">
+        <a class="btn btn-primary d-none d-lg-block" href="tel:<%= opts.phone %>">
+            <div class="d-flex flex-nowrap align-items-center">
+                <span class="fs-5 fw-bold me-2"><i class="fa fa-phone-alt me-2"></i></span>
+                <span class="fw-bold phone phone-city"><%= opts.phone %></span>
+            </div>
+        </a>
+    </div>
+    <button type="button" class="navbar-toggler mx-3" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto align-items-start justify-content-start p-4 p-lg-0">
+            <button
+                type="button"
+                id="settingsButton"
+                class="btn btn-light btn-settings nav-item nav-link"
+                data-bs-toggle="modal"
+                data-bs-target="#settingsModal"
+            >
+                <i class="fa fa-cog"></i>
+            </button>
+            <%_ function isActive(u) { return (url == u) ? 'active' : '' } _%>
+            <a href="/" class="nav-item nav-link <%= isActive('/') -%>">Главная</a>
+            <div class="nav-item dropdown">
+                <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Продукция</a>
+                <div class="dropdown-menu bg-light m-0 shadow">
+                    <a href="/spheres" class="dropdown-item text-dark">
+                        <i class="fa fa-shuffle nav-img"></i>
+                        <span>по сфере применения</span>
+                    </a>
+                    <a href="/product" class="dropdown-item text-dark">
+                        <i class="fa fa-bag-shopping nav-img"></i>
+                        <span>вся продукция</span>
+                    </a>
+                    <a href="/custom"  class="dropdown-item text-dark">
+                        <i class="fa fa-flask-vial nav-img"></i>
+                        <span>разработка</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <%_
+                    let pop_items = 5
+                    let prods = await model.Product.findAll(
+                        {
+                            limit: pop_items,
+                            order: [['hit', 'DESC']],
+                            where: { hide: false },
+                        }
+                    )
+                    if (prods && prods.length == pop_items) {
+                    _%>
+                    <div class="text-center text-primary">популярное</div>
+                    <%_ for (let p of prods) { _%>
+                    <a href="/product/<%= p.name -%>" class="dropdown-item text-dark"><%= p.shortname.replace(opts.pralen + ' ', '') -%></a>
+                    <%_ }} _%>
+                </div>
+            </div>
+            <a href="/contact" class="nav-item nav-link <%= isActive('/contact') -%>">Контакты</a>
+        </div>
+        <a href="mailto:<%= opts.mail %>" class="btn btn-primary px-3 d-none d-lg-block me-3">
+            <div class="d-flex flex-nowrap align-items-center">
+                <i class="fa fa-envelope fa-lg me-3"></i>
+                <span><%= opts.mail %></span>
+            </div>
+        </a>
+    </div>
+</nav>
+
+<div class="modal modal-sm fade settings-modal" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="lead modal-title text-center w-100" id="settingsModalLabel">настройки</p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="pinSwitch">
+                    <label class="form-check-label" for="pinSwitch">Закрепить меню</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="wowSwitch" checked>
+                    <label class="form-check-label" for="wowSwitch">Отображать анимации</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

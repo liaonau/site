@@ -1,0 +1,37 @@
+<section id="videos" class="section-video">
+    <div class="container-fluid py-5 mb-3 px-2">
+        <p class="fw-medium text-uppercase text-primary mb-2 text-center">Видео о нас</p>
+        <h2 class="display-6 mb-4 text-center">Мы в новостях</h2>
+        <div class="text-center d-flex flex-row flex-nowrap justify-content-center overflow-auto wow fadeInUp" data-wow-delay="0.1s">
+            <%_ for (let video of opts.video ) { _%>
+            <div class="w-auto">
+                <%- await include('./video/youtube', { video }) %>
+            </div>
+            <%_ } _%>
+        </div>
+    </div>
+    <div class="modal modal-video fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="videoModalLabel">Видео о нас на Youtube</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe
+                            id="video"
+                            class="embed-responsive-item"
+                            src=""
+                            width="90%"
+                            allowfullscreen
+                            allowscriptaccess="always"
+                            allow="autoplay"
+                        >
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

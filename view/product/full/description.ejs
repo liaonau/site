@@ -1,0 +1,52 @@
+<%_
+    const prod = data.prod
+    const desc = data.prod.Descriptions
+_%>
+<div class="container-fluid d-flex flex-column align-items-start px-0">
+    <%_ for (let d of desc) { _%>
+    <div class="d-flex align-items-center wow fadeInLeft mb-2 leadish" data-wow-delay="0.1s">
+        <i class="fa fa-check text-primary me-2"></i>
+        <div class="align-self-center text-break">
+            <%_ if (d.title) { _%>
+            <span><%- d.title -%>: </span>
+            <%_ } _%>
+            <span><%- d.text -%></span>
+            <%_ if (d.doc) { _%>
+            <a class="text-decoration-none text-dark" href="/product/<%- prod.name -%>/doc/<%- d.doc -%>" title="<%- d.doc -%>">
+                <%_
+                    let icon = 'file'
+                    switch(true)
+                    {
+                        case d.doc.endsWith('.pdf'):
+                            icon = 'file-pdf'
+                            break
+                        case d.doc.endsWith('.doc'):
+                        case d.doc.endsWith('.docx'):
+                            icon = 'file-word'
+                            break
+                        case d.doc.endsWith('.xls'):
+                        case d.doc.endsWith('.xlsx'):
+                            icon = 'file-excel'
+                            break
+                        case d.doc.endsWith('.zip'):
+                            icon = 'file-zipper'
+                            break
+                        default:
+                            icon = 'file'
+                    }
+                _%>
+                <i class="fa fa-lg fa-<%- icon -%>"></i>
+            </a>
+            <%_ } _%>
+            <%_ if (d.link) {
+                const pl = await model.Product.findOne({where: { name: d.link }})
+                if (pl) {
+            _%>
+            <a class="text-decoration-none text-dark" href="/product/<%- d.link -%>">
+                <%- pl.shortname -%>
+            </a>
+            <%_ } } _%>
+        </div>
+    </div>
+ <%_ } _%>
+</div>
